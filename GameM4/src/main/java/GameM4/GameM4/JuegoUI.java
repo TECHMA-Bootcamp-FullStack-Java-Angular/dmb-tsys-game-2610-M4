@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+
 import javax.swing.JButton;
 
 import java.awt.Color;
@@ -92,6 +93,7 @@ public class JuegoUI {
 		btnA.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnA.setBounds(48, 328, 60, 40);
 		frame.getContentPane().add(btnA);
+	
 		
 		JButton btnB = new JButton("B");
 		btnB.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -222,6 +224,7 @@ public class JuegoUI {
 		btnZ.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnZ.setBounds(608, 428, 60, 40);
 		frame.getContentPane().add(btnZ);
+	
 		
 		JLabel lblNewLabel_7 = new JLabel("");
 		lblNewLabel_7.setBounds(368, 40, 267, 252);
@@ -234,4 +237,6 @@ public class JuegoUI {
 		
 		
 	}
+	
+
 }
