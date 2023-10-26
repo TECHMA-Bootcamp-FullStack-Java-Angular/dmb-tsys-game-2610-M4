@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class Welcome {
 
@@ -66,6 +67,7 @@ public class Welcome {
 		btnHelp.addActionListener(showHelp);
 		
 		JLabel lblNewLabel = new JLabel("Palabra Oculta");
+		lblNewLabel.setForeground(SystemColor.textHighlight);
 		lblNewLabel.setFont(new Font("MV Boli", Font.PLAIN, 36));
 		lblNewLabel.setBounds(103, 35, 250, 86);
 		frame.getContentPane().add(lblNewLabel);

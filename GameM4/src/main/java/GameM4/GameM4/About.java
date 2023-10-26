@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.SystemColor;
 
 public class About {
 
@@ -45,21 +46,22 @@ public class About {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
-		JLabel lblNewLabel = new JLabel(" Sergi Rodriguez");
-		lblNewLabel.setBounds(64, 61, 153, 23);
+		JLabel lblNewLabel = new JLabel("Sergi Rodriguez   GitHub: SerotDev");
+		lblNewLabel.setBounds(69, 84, 313, 23);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblAdrian = new JLabel("Adrian Gallego");
-		lblAdrian.setBounds(69, 118, 93, 14);
+		JLabel lblAdrian = new JLabel("Adrian Gallego     GitHub: adriii28");
+		lblAdrian.setBounds(69, 118, 255, 14);
 		frame.getContentPane().add(lblAdrian);
 		
-		JLabel lblDavidMaza = new JLabel("David Maza");
-		lblDavidMaza.setBounds(69, 158, 93, 14);
+		JLabel lblDavidMaza = new JLabel("David Maza          GitHub: d-maza");
+		lblDavidMaza.setBounds(69, 154, 286, 14);
 		frame.getContentPane().add(lblDavidMaza);
 		
-		JLabel lblNewLabel_1 = new JLabel("Realizado por:");
+		JLabel lblNewLabel_1 = new JLabel("Made with love team 2 ");
+		lblNewLabel_1.setForeground(SystemColor.textHighlight);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(152, 11, 153, 48);
+		lblNewLabel_1.setBounds(126, 25, 198, 48);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Home");	
