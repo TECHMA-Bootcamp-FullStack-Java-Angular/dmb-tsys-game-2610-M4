@@ -73,8 +73,10 @@ public class About {
 	ActionListener showWelcome = new ActionListener() {
 		
 		public void actionPerformed(ActionEvent e) {
+			
 			frame.setVisible(false);
-			Welcome window = new Welcome();
+			Welcome window = new Welcome();	
+	
 			window.frame.setVisible(true);
 			
 		}
