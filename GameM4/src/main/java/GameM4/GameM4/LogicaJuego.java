@@ -19,13 +19,18 @@ public class LogicaJuego {
 	
 
 	public static String palabra = seleccionarPalabra();
+	
 	public static char[] letrasUsuariao = { 's', 'u', 'r', 'o' };
+	
+	public static int level = Welcome.getLevel();
 
 	public static String seleccionarPalabra() {
 		Random pRandom = new Random();
 		int randomInt = pRandom.nextInt(palabras.length);
 		return palabras[randomInt];
 	}
+	
+	
 
 	public static char pista() {
 

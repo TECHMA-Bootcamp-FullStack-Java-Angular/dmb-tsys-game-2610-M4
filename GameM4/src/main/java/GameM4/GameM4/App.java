@@ -5,7 +5,6 @@ public class App {
 
 		char[] array = {'A','E','I','O','U'};
 		LogicaJuego.ahorcado(array);
-
 		
 	//	String a = LogicaJuego.buscarLetra(LogicaJuego.seleccionarPalabra(), array );
 	//	System.out.println(a);
