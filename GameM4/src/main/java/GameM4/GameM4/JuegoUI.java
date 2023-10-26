@@ -5,16 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.lang.reflect.Array;
-
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
+
 import java.awt.Color;
 
 public class JuegoUI {
 
-
-	private JFrame frame;
+	public JFrame frame;
 
 	private JButton btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM, btnN, btnNN;
 	private JButton  btnO, btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ;

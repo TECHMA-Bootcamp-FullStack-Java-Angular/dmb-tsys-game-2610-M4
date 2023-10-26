@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
+import java.awt.Font;
 
 public class Help extends JFrame {
 
@@ -41,6 +42,7 @@ public class Help extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.controlHighlight);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
 
@@ -52,12 +54,19 @@ public class Help extends JFrame {
 		getContentPane().add(btnNewButton);
 		
 		JTextArea txtrElTrozoDe = new JTextArea();
-		txtrElTrozoDe.setBackground(SystemColor.inactiveCaptionBorder);
+		txtrElTrozoDe.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 13));
+		txtrElTrozoDe.setBackground(SystemColor.controlHighlight);
 		txtrElTrozoDe.setLineWrap(true);
-		txtrElTrozoDe.setText("El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de \"de Finibus Bonorum et Malorum\" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.");
+		txtrElTrozoDe.setText("El juego del ahorcado tiene 10 vidas y 5 ayudas. \n\nLos jugadores adivinan letras para revelar una palabra oculta.\n\nCada letra correcta muestra su posición en la palabra.\n\nLas ayudas proporcionan pistas.\n\nEl juego termina cuando adivinan la palabra o pierden las vidas.\n\nPueden jugar de nuevo.");
 		txtrElTrozoDe.setToolTipText("");
 		txtrElTrozoDe.setBounds(20, 45, 404, 205);
 		contentPane.add(txtrElTrozoDe);
+		
+		JLabel lblNewLabel = new JLabel("Mecánica del juego");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel.setForeground(SystemColor.textHighlight);
+		lblNewLabel.setBounds(127, 12, 131, 19);
+		contentPane.add(lblNewLabel);
 		btnNewButton.addActionListener(showWelcome);
 		
 	}
