@@ -1,22 +1,19 @@
 package GameM4.GameM4;
-
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import java.lang.reflect.Array;
-
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class JuegoUI {
+
 	
 	private int vidas = 10;
 	private int pistas = 5;
@@ -31,8 +28,8 @@ public class JuegoUI {
 	JLabel pista3;
 	JLabel pista4;
 	JLabel pista5;
-	
-	
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -93,27 +90,27 @@ public class JuegoUI {
 		frame.getContentPane().add(lblVidas);
 		
 		pista1 = new JLabel();
-		pista1.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\Sergi\\Documents\\eclipse-workspace\\M4\\dmb-tsys-game-2610-M4\\GameM4\\img\\clue_1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		pista1.setIcon(new ImageIcon(new ImageIcon("img\\clue_1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		pista1.setBounds(48, 183, 30, 30);
 		frame.getContentPane().add(pista1);
 		
 		pista2 = new JLabel();
-		pista2.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\Sergi\\Documents\\eclipse-workspace\\M4\\dmb-tsys-game-2610-M4\\GameM4\\img\\clue_1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		pista2.setIcon(new ImageIcon(new ImageIcon("img\\clue_1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		pista2.setBounds(83, 183, 30, 30);
 		frame.getContentPane().add(pista2);
 		
 		pista3 = new JLabel();
-		pista3.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\Sergi\\Documents\\eclipse-workspace\\M4\\dmb-tsys-game-2610-M4\\GameM4\\img\\clue_1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		pista3.setIcon(new ImageIcon(new ImageIcon("img\\clue_1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		pista3.setBounds(118, 183, 30, 30);
 		frame.getContentPane().add(pista3);
 		
 		pista4 = new JLabel();
-		pista4.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\Sergi\\Documents\\eclipse-workspace\\M4\\dmb-tsys-game-2610-M4\\GameM4\\img\\clue_1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		pista4.setIcon(new ImageIcon(new ImageIcon("img\\clue_1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		pista4.setBounds(153, 183, 30, 30);
 		frame.getContentPane().add(pista4);
 		
 		pista5 = new JLabel();
-		pista5.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\Sergi\\Documents\\eclipse-workspace\\M4\\dmb-tsys-game-2610-M4\\GameM4\\img\\clue_1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		pista5.setIcon(new ImageIcon(new ImageIcon("img\\clue_1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		pista5.setBounds(188, 183, 30, 30);
 		frame.getContentPane().add(pista5);
 		
@@ -136,7 +133,7 @@ public class JuegoUI {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		ahorcadoPintado = new JLabel();
-		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\Sergi\\Documents\\eclipse-workspace\\M4\\dmb-tsys-game-2610-M4\\GameM4\\img\\ahorcado_1.png").getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
+		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon("img\\ahorcado_1.png").getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
 		ahorcadoPintado.setBounds(368, 40, 260, 260);
 		frame.getContentPane().add(ahorcadoPintado);
 		
@@ -146,6 +143,7 @@ public class JuegoUI {
 		btnA.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnA.setBounds(48, 328, 60, 40);
 		frame.getContentPane().add(btnA);
+	
 		
 		JButton btnB = new JButton("B");
 		btnB.addActionListener(charBtn);
@@ -302,6 +300,7 @@ public class JuegoUI {
 		btnZ.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnZ.setBounds(608, 428, 60, 40);
 		frame.getContentPane().add(btnZ);
+	
 		
 		//it moves the window to the middle
 		frame.setLocationRelativeTo(null);
@@ -349,5 +348,5 @@ public class JuegoUI {
 	public void pintarAhorcadoGanador() {
 		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon("img\\ahorcado_win.png").getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
 	}
-	
+
 }
