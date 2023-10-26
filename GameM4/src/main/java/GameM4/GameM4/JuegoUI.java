@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 
 public class JuegoUI {
 
-	private JFrame frame;
+	JFrame frame;
 	private JButton btnA, btnB, btnC, btnD, btnE, btnF, btnG, btnH, btnI, btnJ, btnK, btnL, btnM, btnN, btnNN;
 	private JButton  btnO, btnP, btnQ, btnR, btnS, btnT, btnU, btnV, btnW, btnX, btnY, btnZ;
 	private JLabel lblNewLabel_2;
