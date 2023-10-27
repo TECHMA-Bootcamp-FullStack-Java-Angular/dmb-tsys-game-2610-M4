@@ -95,14 +95,10 @@ public class GameContoller {
 		if(intentos==0) {
 			JOptionPane.showMessageDialog(null, "No te quedan más intetos");
 			JuegoUI.disableButtons();
-//			jueWin.frame.setVisible(false);
-
-//			win.frame.setVisible(true);
 			
 		}
 			characterList.add(inputCharacter);
 
-		--intentos;
 		wordUnscrambler(secretWord, characterList);
 	}
 
@@ -168,6 +164,7 @@ public class GameContoller {
         for (char letra : letrasAdivinadas) {
             if (palabra.indexOf(letra) == -1) {
                 contador++;
+        		--intentos;
    	    	 	JuegoUI.printVidaAhorcado(contador);
             }
         }
