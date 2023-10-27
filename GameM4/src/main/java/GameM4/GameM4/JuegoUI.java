@@ -83,6 +83,7 @@ public class JuegoUI {
 		frame.getContentPane().add(btnNewButton);
 		
 		btnResolver = new JButton("Usar Pista");
+		buttonGroup.add(btnResolver);
 		btnResolver.addActionListener(obtenerPista);
 		btnResolver.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnResolver.setBounds(48, 101, 267, 40);
@@ -319,6 +320,7 @@ public class JuegoUI {
 		frame.getContentPane().add(btnX);
 		
 		JButton btnY = new JButton("Y");
+		buttonGroup.add(btnY);
 		btnY.addActionListener(charBtn);
 		btnY.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnY.setBounds(538, 428, 60, 40);
@@ -423,19 +425,6 @@ public class JuegoUI {
 	
 	/**
 	 * 
-	 * Imprime el número de intentos disponibles para el usuario.
-	 * 
-	 * @param intentos El numero de intentos que tiene el usuario
-	 * 
-	 * */
-	public static void intentosDisponibles(int intentos) {
-		String intentosStr = "Intentos: "+ intentos;
-		lblintentos.setText(intentosStr);
-
-	}
-	
-	/**
-	 * 
 	 * Imprime por pantalla las imagenes de las pistas, y maneja las pistas que tiene el 
 	 * usuario en la partida
 	 * 
@@ -463,6 +452,20 @@ public class JuegoUI {
 		pista5.setIcon(new ImageIcon(new ImageIcon(pathPistas[4]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		
 	}
+	
+	/**
+	 * 
+	 * Imprime el número de intentos disponibles para el usuario.
+	 * 
+	 * @param intentos El numero de intentos que tiene el usuario
+	 * 
+	 * */
+	public static void intentosDisponibles(int intentos) {
+		String intentosStr = "Intentos: "+ intentos;
+		lblintentos.setText(intentosStr);
+
+	}
+	
 	
 	/**
 	 * 
