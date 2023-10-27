@@ -109,7 +109,7 @@ public class JuegoUI {
 		btnNewButton.setBounds(48, 51, 267, 40);
 		frame.getContentPane().add(btnNewButton);
 		
-		// Botoncitos
+		
 		btnResolver = new JButton("Usar Pista");
 		buttonGroup.add(btnResolver);
 		btnResolver.addActionListener(obtenerPista);
@@ -295,6 +295,7 @@ public class JuegoUI {
 		frame.getContentPane().add(btnX);
 		
 		JButton btnY = new JButton("Y");
+		buttonGroup.add(btnY);
 		btnY.addActionListener(charBtn);
 		btnY.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnY.setBounds(538, 428, 60, 40);
@@ -483,6 +484,8 @@ public class JuegoUI {
 	        while (buttons.hasMoreElements()) {
 	            AbstractButton button = buttons.nextElement();
 	            button.setEnabled(false);
-	        }	
+	        }
+	        lblintentos.setText("Intentos: 0");
 	}
+	
 }
