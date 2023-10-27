@@ -9,7 +9,7 @@ import java.awt.SystemColor;
 public class AboutUI {
 
 	JFrame frame;
-    int yPos = 252;
+    private int yPos = 252;
 
 	/**
 	 * Create the application.
@@ -50,6 +50,11 @@ public class AboutUI {
 		frame.getContentPane().add(btnNewButton);
 		btnNewButton.addActionListener(showWelcome);
 		
+		/**
+		 * Temporizador que realiza una animación de desplazamiento hacia arriba
+		 * de varios componentes gráficos en un intervalo de tiempo específico.
+		 * El temporizador se inicia y detiene automáticamente cuando se alcanza la posición final.
+		 */
 	    Timer timer = new Timer(100, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            if (yPos > 0) {

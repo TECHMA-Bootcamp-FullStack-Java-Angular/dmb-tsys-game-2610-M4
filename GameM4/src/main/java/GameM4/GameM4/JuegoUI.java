@@ -338,7 +338,6 @@ public class JuegoUI {
 		public void actionPerformed(ActionEvent e) {
 			JButton boton = (JButton) e.getSource();
 			char btnChar = boton.getText().charAt(0);
-			System.out.println(btnChar);
 			
 			GameContoller.round(btnChar);
 			boton.setEnabled(false);
