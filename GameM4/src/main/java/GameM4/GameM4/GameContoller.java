@@ -2,7 +2,6 @@ package GameM4.GameM4;
 
 import java.util.ArrayList;
 import java.util.Random;
-import javax.swing.JOptionPane;
 
 public class GameContoller {
 
@@ -18,7 +17,6 @@ public class GameContoller {
 	private static int lives = 0; // creciente
 	private static int pistas = 5; // decreciente
 	private static int level = 1;
-	private static boolean success;
 	private static ArrayList<Character> characterList = new ArrayList<Character>();
 
 	/**
@@ -50,7 +48,6 @@ public class GameContoller {
 			break;
 		}
 
-		// Limpiamos lista de caracteres
 		characterList.clear();
 
 		// Creamos palabra secreta bacia solo para conocer la dimensión
@@ -59,7 +56,6 @@ public class GameContoller {
 			secretLineWord += " _ ";
 		}
 
-		// Printeamos elementos
 		JuegoUI.printDificultad(level);
 		JuegoUI.intentosDisponibles(intentos);
 		JuegoUI.printPistas(pistas);
@@ -71,9 +67,7 @@ public class GameContoller {
 	/**
 	 * Selecciona una palabra al azar de un array de palabras.
 	 *
-	 * @param palabras Un array de palabras entre las cuales se seleccionará una al
-	 *                 azar.
-	 *
+	 * @param palabras Un array de palabras entre las cuales se seleccionará una al azar.
 	 * @return La palabra seleccionada al azar del array.
 	 */
 	public static String selectRandomWord(String[] palabras) {
@@ -83,19 +77,14 @@ public class GameContoller {
 	}
 
 	/**
-	 * Realiza una ronda de juego, verificando y manejando la introducción de un
-	 * carácter.
+	 * Realiza una ronda de juego, verificando y manejando la introducción de un carácter.
 	 * 
 	 * @param inputCharacter El carácter que se ha introducido en la ronda.
 	 */
 	public static void round(char inputCharacter) {
-
 		if (intentos > 0) {
 			characterList.add(inputCharacter);
 			wordUnscrambler(secretWord, characterList);
-		} else if (intentos == 0) {
-			JOptionPane.showMessageDialog(null, "No te quedan más intetos");
-			JuegoUI.disableButtons();
 		}
 
 	}
@@ -105,19 +94,15 @@ public class GameContoller {
 	 * 
 	 * Si quedan pistas disponibles (pistas >= 0), se agrega la primera letra no
 	 * adivinada de la palabra al ArrayList de caracteres adivinados, se actualiza
-	 * la representación visual del juego y se disminuye la cantidad de pistas
-	 * restantes.
+	 * la representación visual del juego y se disminuye la cantidad de pistas restantes.
 	 */
-
 	public static void getHint() {
-
 		if (pistas >= 0) {
 			characterList.add(hint(characterList, secretWord));
 			wordUnscrambler(secretWord, characterList);
 			--pistas;
 			--intentos;
-			// JuegoUI.printVidaAhorcado(vidas); // Le quitamos una vida por pedir pista (Es
-			// un puequeño precio para una gran ayuda ;) )
+			// Le quitamos una vida por pedir pista (Es un puequeño precio para una gran ayuda ;P )
 			JuegoUI.printPistas(pistas);
 			JuegoUI.intentosDisponibles(intentos);
 		}
@@ -127,36 +112,30 @@ public class GameContoller {
 	 * Encuentra y devuelve la primera letra de la palabra que no está presente en
 	 * la lista de caracteres.
 	 *
-	 * @param listaCaracteres La lista de caracteres en la que se busca la ausencia
-	 *                        de letras.
-	 * @param palabra         La palabra en la que se busca la primera letra no
-	 *                        presente en la lista.
+	 * @param listaCaracteres La lista de caracteres en la que se busca la ausencia de letras.
+	 * @param palabra La palabra en la que se busca la primera letra no presente en la lista.
 	 * @return La primera letra de la palabra que no se encuentra en la lista de
 	 *         caracteres, o el carácter '_' si todas las letras están en la lista.
 	 */
 	public static char hint(ArrayList<Character> listaCaracteres, String palabra) {
+		char caracter = '_';
 		for (char letra : palabra.toCharArray()) {
 			if (!listaCaracteres.contains(letra)) {
-				return letra;
+				caracter = letra;
 			}
 		}
-		return '_';
+		return caracter;
 	}
 
 	/**
 	 * Actualiza el estado visual del juego del ahorcado, mostrando la palabra
 	 * oculta con letras adivinadas y letras ocultas.
 	 *
-	 * @param palabra          La palabra oculta que se debe adivinar.
+	 * @param palabra La palabra oculta que se debe adivinar.
 	 * @param letrasAdivinadas La lista de letras que el jugador ha adivinado.
-	 * @return Una representación de la palabra oculta con letras adivinadas y
-	 *         letras ocultas.
+	 * @return Una representación de la palabra oculta con letras adivinadas y letras ocultas.
 	 */
-
 	public static void wordUnscrambler(String palabra, ArrayList<Character> letrasAdivinadas) {
-
-		success = false;
-
 		level = WelcomeUI.getLevel();
 		StringBuilder resultado = new StringBuilder();
 
@@ -164,9 +143,12 @@ public class GameContoller {
 		for (char letra : letrasAdivinadas) {
 			if (palabra.indexOf(letra) == -1) {
 				++lives;
-				success = true;
 				JuegoUI.printVidaAhorcado(lives);
 				intentos = 10 - lives;
+				
+				if (intentos == 0) {
+					JuegoUI.disableButtons();
+				}
 			}
 		}
 
@@ -181,7 +163,6 @@ public class GameContoller {
 		}
 
 		if (resultado.toString().equals(palabra)) {
-
 			JuegoUI.printAhorcadoGanador();
 		}
 
@@ -196,7 +177,7 @@ public class GameContoller {
 	 * letras adivinadas.
 	 *
 	 * @param letrasAdivinadas El array de letras adivinadas.
-	 * @param letra            La letra que se quiere verificar.
+	 * @param letra La letra que se quiere verificar.
 	 * @return true si la letra está presente en el array de letras adivinadas;
 	 */
 
@@ -210,12 +191,10 @@ public class GameContoller {
 	}
 
 	/**
-	 * Comprueba si se ha ganado el juego al adivinar completamente una palabra
-	 * oculta.
+	 * Comprueba si se ha ganado el juego al adivinar completamente una palabra oculta.
 	 *
 	 * @param palabra La palabra a verificar.
-	 * @return true si la palabra no contiene caracteres '_', false en caso
-	 *         contrario.
+	 * @return true si la palabra no contiene caracteres '_', false en caso contrario.
 	 */
 	public static boolean isWinner(String palabra) {
 		return palabra.contains("_") ? false : true;
