@@ -2,7 +2,6 @@ package GameM4.GameM4;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.JOptionPane;
 
 public class GameContoller {
@@ -19,6 +18,7 @@ public class GameContoller {
 	private static int lives = 0; // creciente
 	private static int pistas = 5; // decreciente
 	private static int level = 1;
+	private static boolean success;
 	private static ArrayList<Character> characterList = new ArrayList<Character>();
 
 	/**
@@ -56,10 +56,11 @@ public class GameContoller {
 
 		// Creamos palabra secreta bacia solo para conocer la dimensión
 		
-		String secretWord = "";
-		for (int i = 0; i < secretWord.length(); i++) {
-			secretWord += " _ ";
+		String secretLineWord = "";
+		for (int i = 0; i < secretLineWord.length(); i++) {
+			secretLineWord += " _ ";
 		}
+		
 
 		// Printeamos elementos
 		
@@ -67,7 +68,7 @@ public class GameContoller {
 		JuegoUI.intentosDisponibles(intentos);
 		JuegoUI.printPistas(pistas);
 		JuegoUI.printVidaAhorcado(lives);
-		JuegoUI.printPalabraSecreta(secretWord);
+		JuegoUI.printPalabraSecreta(secretLineWord);
 
 	}
 
@@ -99,6 +100,10 @@ public class GameContoller {
 		}
 			characterList.add(inputCharacter);
 
+		if(success) {
+			--intentos;
+		}
+		
 		wordUnscrambler(secretWord, characterList);
 	}
 
@@ -118,8 +123,7 @@ public class GameContoller {
 			wordUnscrambler(secretWord, characterList);
 			--pistas;
 			--intentos;
-			// JuegoUI.printVidaAhorcado(vidas); // Le quitamos una vida por pedir pista (Es
-			// un puequeño precio para una gran ayuda ;) )
+			// JuegoUI.printVidaAhorcado(vidas); // Le quitamos una vida por pedir pista (Es un puequeño precio para una gran ayuda ;) )
 			JuegoUI.printPistas(pistas);
 			JuegoUI.intentosDisponibles(intentos);
 		}
@@ -157,35 +161,34 @@ public class GameContoller {
 	
 	public static  void wordUnscrambler(String palabra, ArrayList<Character> letrasAdivinadas) {
 		
+		success = false;
+		
 		level = WelcomeUI.getLevel();
+		 StringBuilder resultado = new StringBuilder();
 		
-		
-		int contador = 0;
+		int lives = 0;
         for (char letra : letrasAdivinadas) {
             if (palabra.indexOf(letra) == -1) {
-                contador++;
-        		--intentos;
-   	    	 	JuegoUI.printVidaAhorcado(contador);
+                ++lives;
+                success = true;
+   	    	 	JuegoUI.printVidaAhorcado(lives);
             }
         }
         
-        System.out.println("contadr prueba " +contador);
-	    
-	    StringBuilder resultado = new StringBuilder();
-	    
-	    System.out.println("Palabra " + palabra);
 	    
 	    for (int i = 0; i < palabra.length(); i++) {
 	        char letra = palabra.charAt(i);
 	        if (letrasAdivinadas.contains(letra)) {
 	            resultado.append(letra);
+
+	            
 	        } else {
 	            resultado.append(" _ ");   
 	        }
 	    }
 
 	    if (resultado.toString().equals(palabra)) {
-	    	System.out.println(palabra);
+
 			JuegoUI.printAhorcadoGanador();
 		}
 	    
