@@ -51,12 +51,21 @@ public class JuegoUI {
 		lblNewLabel.setBounds(48, 28, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblTeclado = new JLabel("Teclado");
-		lblTeclado.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTeclado.setBounds(48, 298, 105, 20);
-		frame.getContentPane().add(lblTeclado);
-	
-
+		JButton btnNewButton = new JButton("Reiniciar juego");
+		btnNewButton.addActionListener(finishGame);
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton.setBounds(48, 51, 267, 40);
+		frame.getContentPane().add(btnNewButton);
+		
+		btnResolver = new JButton("Usar Pista");
+		buttonGroup.add(btnResolver);
+		btnResolver.addActionListener(obtenerPista);
+		btnResolver.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnResolver.setBounds(48, 101, 267, 40);
+		frame.getContentPane().add(btnResolver);
+		
+		
+		
 		JLabel lblVidas = new JLabel("Pistas");
 		lblVidas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblVidas.setBounds(50, 164, 134, 20);
@@ -87,6 +96,8 @@ public class JuegoUI {
 		pista5.setBounds(188, 183, 30, 30);
 		frame.getContentPane().add(pista5);
 		
+		
+		
 		JLabel lblPalabraSecreta = new JLabel("Palabra secreta");
 		lblPalabraSecreta.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPalabraSecreta.setBounds(48, 223, 134, 20);
@@ -97,26 +108,19 @@ public class JuegoUI {
 		palabraSecreta.setBounds(48, 243, 310, 30);
 		frame.getContentPane().add(palabraSecreta);
 
+		
 
 		ahorcadoPintado = new JLabel();
 		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon("img\\ahorcado_0.png").getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
 		ahorcadoPintado.setBounds(368, 51, 260, 260);
 		frame.getContentPane().add(ahorcadoPintado);
-		
-		JButton btnNewButton = new JButton("Reiniciar juego");
-		btnNewButton.addActionListener(finishGame);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(48, 51, 267, 40);
-		frame.getContentPane().add(btnNewButton);
-		
-		
-		btnResolver = new JButton("Usar Pista");
-		buttonGroup.add(btnResolver);
-		btnResolver.addActionListener(obtenerPista);
-		btnResolver.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnResolver.setBounds(48, 101, 267, 40);
-		frame.getContentPane().add(btnResolver);
 
+		
+		
+		JLabel lblTeclado = new JLabel("Teclado");
+		lblTeclado.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTeclado.setBounds(48, 298, 105, 20);
+		frame.getContentPane().add(lblTeclado);
 		
 		JButton btnA = new JButton("A");
 		buttonGroup.add(btnA);
@@ -125,7 +129,6 @@ public class JuegoUI {
 		btnA.setBounds(48, 328, 60, 40);
 		frame.getContentPane().add(btnA);
 	
-		
 		JButton btnB = new JButton("B");
 		buttonGroup.add(btnB);
 		btnB.addActionListener(charBtn);
