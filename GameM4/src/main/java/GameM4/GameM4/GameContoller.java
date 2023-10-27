@@ -97,14 +97,14 @@ public class GameContoller {
 			JOptionPane.showMessageDialog(null, "No te quedan más intetos");
 			JuegoUI.disableButtons();
 			
-		}
+		}else {
 			characterList.add(inputCharacter);
-
-		if(success) {
-			--intentos;
+			if(success) {
+				--intentos;
+			}
+			wordUnscrambler(secretWord, characterList);
 		}
-		
-		wordUnscrambler(secretWord, characterList);
+
 	}
 
 	/**
