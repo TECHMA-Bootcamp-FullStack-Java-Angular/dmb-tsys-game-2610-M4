@@ -9,7 +9,7 @@ import java.awt.SystemColor;
 public class AboutUI {
 
 	JFrame frame;
-
+    int yPos = 252;
 
 	/**
 	 * Create the application.
@@ -27,30 +27,48 @@ public class AboutUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
-		JLabel lblNewLabel = new JLabel("Sergi Rodriguez   GitHub: SerotDev");
-		lblNewLabel.setBounds(69, 84, 313, 23);
+		JLabel lblNewLabel = new JLabel("GitHub: SerotDev is Sergi Rodriguez");
+		lblNewLabel.setBounds(75, 84, 313, 23);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblAdrian = new JLabel("Adrian Gallego     GitHub: adriii28");
-		lblAdrian.setBounds(69, 118, 255, 14);
+		JLabel lblAdrian = new JLabel("GitHub: adriii28 is Adrian Gallego");
+		lblAdrian.setBounds(75, 118, 255, 14);
 		frame.getContentPane().add(lblAdrian);
 		
-		JLabel lblDavidMaza = new JLabel("David Maza          GitHub: d-maza");
-		lblDavidMaza.setBounds(69, 154, 286, 14);
+		JLabel lblDavidMaza = new JLabel("GitHub: d-maza is David Maza");
+		lblDavidMaza.setBounds(75, 154, 286, 14);
 		frame.getContentPane().add(lblDavidMaza);
 		
 		JLabel lblNewLabel_1 = new JLabel("Made with love team 2 ");
 		lblNewLabel_1.setForeground(SystemColor.textHighlight);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(126, 25, 198, 48);
+		lblNewLabel_1.setBounds(75, 25, 198, 48);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Home");	
 		btnNewButton.setBounds(356, 11, 68, 23);
 		frame.getContentPane().add(btnNewButton);
 		btnNewButton.addActionListener(showWelcome);
+		
+	    Timer timer = new Timer(100, new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            if (yPos > 0) {
+	                yPos -= 5;
+	                lblNewLabel_1.setLocation(75, yPos );
+	                lblAdrian.setLocation(75, yPos + 114); 
+	                lblDavidMaza.setLocation(75, yPos + 84);
+	                lblNewLabel.setLocation(75, yPos + 54);
+	  
+	            } else {
+	                ((Timer) e.getSource()).stop();
+	            }
+	        }
+	    });
+	    timer.start();
+		
 	}
 	
+
 	ActionListener showWelcome = new ActionListener() {
 		
 		public void actionPerformed(ActionEvent e) {

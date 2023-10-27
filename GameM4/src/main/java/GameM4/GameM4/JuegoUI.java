@@ -5,11 +5,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 
 public class JuegoUI {	
 	
 	public JFrame frame;
+	private static JButton btnA,btnB,btnC,btnD,btnE,btnF,btnG,btnH,btnI,btnJ,btnK,btnL,btnM,btnN,btnÑ,btnO,btnP,btnQ,btnR,btnS,btnT,btnU,btnV,btnW,btnX,btnY,btnZ;
 	private static JButton btnResolver;
 	private static JLabel dificultad, lblintentos;
 	private static JLabel ahorcadoPintado;
@@ -45,6 +47,7 @@ public class JuegoUI {
 		dificultad.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dificultad.setBounds(393, 27, 275, 17);
 		frame.getContentPane().add(dificultad);
+		
 
 		JLabel lblNewLabel = new JLabel("Menu");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -489,6 +492,22 @@ public class JuegoUI {
 	            button.setEnabled(false);
 	        }
 	        lblintentos.setText("Intentos: 0");
+	}
+	
+	/**
+	 * Metodo que desctiva un botón pasándole por parámetro el texto del boton a deshabilirar que forme parte del grupo de botones.
+	 * 
+	 * @param charButton
+	 */
+	public static void disableButtonByText(String textOfButton) {
+		Enumeration<AbstractButton> keyboardButtons = buttonGroup.getElements();
+		while (keyboardButtons.hasMoreElements()) {
+			AbstractButton button = keyboardButtons.nextElement();
+            if (textOfButton.equals(button.getText())) {
+				button.setEnabled(false);
+			}
+		}
+		 
 	}
 	
 }

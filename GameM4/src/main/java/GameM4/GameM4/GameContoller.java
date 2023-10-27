@@ -95,24 +95,27 @@ public class GameContoller {
 	 * 
 	 * Si quedan pistas disponibles (pistas >= 0), se agrega la primera letra no
 	 * adivinada de la palabra al ArrayList de caracteres adivinados, se actualiza
-	 * la representación visual del juego y se disminuye la cantidad de pistas restantes.
+	 * la representación visual del juego, se disminuye la cantidad de pistas restantes 
+	 * y bloqueamos el botón corrrespondiente al caracter de la pista
 	 */
 	public static void getHint() {
-		if (pistas >= 0) {
-			characterList.add(hint(characterList, secretWord));
+		if (pistas > 0) {
+			char charOfHint = hint(characterList, secretWord);
+			characterList.add(charOfHint);
 			wordUnscrambler(secretWord, characterList);
-			--pistas;
-			--intentos;
-
-			// Le quitamos una vida por pedir pista (Es un puequeño precio para una gran ayuda ;P )
+			pistas--;
+			//imprimimos pistas
 			JuegoUI.printPistas(pistas);
-			JuegoUI.intentosDisponibles(intentos);
+			//bloqueamos caracter de pista y si no quedan pistas bloqueamos el boton de pista
+			JuegoUI.disableButtonByText(String.valueOf(charOfHint));
+			if (pistas == 0){
+				JuegoUI.disableButtonByText("Usar Pista");
+			}
 		}
 	}
 
 	/**
-	 * Encuentra y devuelve la primera letra de la palabra que no está presente en
-	 * la lista de caracteres.
+	 * Encuentra y devuelve la primera letra de la palabra que no está presente en la lista de caracteres.
 	 *
 	 * @param listaCaracteres La lista de caracteres en la que se busca la ausencia de letras.
 	 * @param palabra La palabra en la que se busca la primera letra no presente en la lista.
