@@ -17,6 +17,7 @@ public class GameContoller {
 	private static int lives = 0; // creciente
 	private static int pistas = 5; // decreciente
 	private static int level = 1;
+
 	private static ArrayList<Character> characterList = new ArrayList<Character>();
 
 	/**
@@ -102,6 +103,7 @@ public class GameContoller {
 			wordUnscrambler(secretWord, characterList);
 			--pistas;
 			--intentos;
+
 			// Le quitamos una vida por pedir pista (Es un puequeño precio para una gran ayuda ;P )
 			JuegoUI.printPistas(pistas);
 			JuegoUI.intentosDisponibles(intentos);
@@ -115,7 +117,7 @@ public class GameContoller {
 	 * @param listaCaracteres La lista de caracteres en la que se busca la ausencia de letras.
 	 * @param palabra La palabra en la que se busca la primera letra no presente en la lista.
 	 * @return La primera letra de la palabra que no se encuentra en la lista de
-	 *         caracteres, o el carácter '_' si todas las letras están en la lista.
+	 * caracteres, o el carácter '_' si todas las letras están en la lista.
 	 */
 	public static char hint(ArrayList<Character> listaCaracteres, String palabra) {
 		char caracter = '_';
@@ -136,6 +138,7 @@ public class GameContoller {
 	 * @return Una representación de la palabra oculta con letras adivinadas y letras ocultas.
 	 */
 	public static void wordUnscrambler(String palabra, ArrayList<Character> letrasAdivinadas) {
+
 		level = WelcomeUI.getLevel();
 		StringBuilder resultado = new StringBuilder();
 
@@ -143,6 +146,7 @@ public class GameContoller {
 		for (char letra : letrasAdivinadas) {
 			if (palabra.indexOf(letra) == -1) {
 				++lives;
+
 				JuegoUI.printVidaAhorcado(lives);
 				intentos = 10 - lives;
 				
