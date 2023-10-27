@@ -34,7 +34,7 @@ public class HelpUI extends JFrame {
 	public HelpUI() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 480, 342);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.controlHighlight);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -51,15 +51,15 @@ public class HelpUI extends JFrame {
 		txtrElTrozoDe.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 13));
 		txtrElTrozoDe.setBackground(SystemColor.controlHighlight);
 		txtrElTrozoDe.setLineWrap(true);
-		txtrElTrozoDe.setText("El juego del ahorcado tiene 10 vidas y 5 ayudas. \n\nLos jugadores adivinan letras para revelar una palabra oculta.\n\nCada letra correcta muestra su posición en la palabra.\n\nLas ayudas proporcionan pistas.\n\nEl juego termina cuando adivinan la palabra o pierden las vidas.\n\nPueden jugar de nuevo.");
+		txtrElTrozoDe.setText("* El juego del ahorcado tiene 10 vidas y 5 ayudas. \r\n\r\n*Los jugadores adivinan letras para revelar una palabra oculta.\r\n\r\n* Cada letra correcta muestra su posición en la palabra.\r\n\r\nLas ayudas proporcionan pistas.\r\n\r\n* El juego termina cuando adivinan la palabra o pierden las vidas.\r\n\r\n* Pueden jugar de nuevo.");
 		txtrElTrozoDe.setToolTipText("");
-		txtrElTrozoDe.setBounds(20, 45, 404, 205);
+		txtrElTrozoDe.setBounds(33, 61, 404, 205);
 		contentPane.add(txtrElTrozoDe);
 		
 		JLabel lblNewLabel = new JLabel("Mecánica del juego");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel.setForeground(SystemColor.textHighlight);
-		lblNewLabel.setBounds(127, 12, 131, 19);
+		lblNewLabel.setBounds(154, 22, 131, 19);
 		contentPane.add(lblNewLabel);
 		btnNewButton.addActionListener(showWelcome);
 		
