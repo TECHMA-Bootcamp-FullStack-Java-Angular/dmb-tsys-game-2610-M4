@@ -1,15 +1,8 @@
 package GameM4.GameM4;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Image;
-import javax.swing.JButton;
-import java.awt.Color;
+import javax.swing.*;
 
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
 import java.awt.event.ActionEvent;
@@ -26,23 +19,6 @@ public class JuegoUI {
 
 
 	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					JuegoUI window = new JuegoUI();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-	
-
-	/**
 	 * Create the application.
 	 */
 	public JuegoUI() {
@@ -56,6 +32,7 @@ public class JuegoUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setResizable(false);
@@ -64,32 +41,22 @@ public class JuegoUI {
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Ahorcado");
 
-// dificultad
 		dificultad = new JLabel("Modo de juego:");
 		dificultad.setFont(new Font("Tahoma", Font.BOLD, 14));
 		dificultad.setBounds(393, 27, 275, 17);
 		frame.getContentPane().add(dificultad);
 
-// menu
 		JLabel lblNewLabel = new JLabel("Menu");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setBounds(48, 28, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Reiniciar juego");
-		btnNewButton.addActionListener(finishGame);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(48, 51, 267, 40);
-		frame.getContentPane().add(btnNewButton);
-		
-		btnResolver = new JButton("Usar Pista");
-		buttonGroup.add(btnResolver);
-		btnResolver.addActionListener(obtenerPista);
-		btnResolver.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnResolver.setBounds(48, 101, 267, 40);
-		frame.getContentPane().add(btnResolver);
+		JLabel lblTeclado = new JLabel("Teclado");
+		lblTeclado.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTeclado.setBounds(48, 298, 105, 20);
+		frame.getContentPane().add(lblTeclado);
+	
 
-// pistas
 		JLabel lblVidas = new JLabel("Pistas");
 		lblVidas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblVidas.setBounds(50, 164, 134, 20);
@@ -120,7 +87,6 @@ public class JuegoUI {
 		pista5.setBounds(188, 183, 30, 30);
 		frame.getContentPane().add(pista5);
 		
-// palabra secreta
 		JLabel lblPalabraSecreta = new JLabel("Palabra secreta");
 		lblPalabraSecreta.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPalabraSecreta.setBounds(48, 223, 134, 20);
@@ -131,17 +97,26 @@ public class JuegoUI {
 		palabraSecreta.setBounds(48, 243, 310, 30);
 		frame.getContentPane().add(palabraSecreta);
 
-//ahorcado
+
 		ahorcadoPintado = new JLabel();
 		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon("img\\ahorcado_0.png").getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
 		ahorcadoPintado.setBounds(368, 51, 260, 260);
 		frame.getContentPane().add(ahorcadoPintado);
 		
-//teclado
-		JLabel lblTeclado = new JLabel("Teclado");
-		lblTeclado.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTeclado.setBounds(48, 298, 105, 20);
-		frame.getContentPane().add(lblTeclado);
+		JButton btnNewButton = new JButton("Reiniciar juego");
+		btnNewButton.addActionListener(finishGame);
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton.setBounds(48, 51, 267, 40);
+		frame.getContentPane().add(btnNewButton);
+		
+		// Botoncitos
+		btnResolver = new JButton("Usar Pista");
+		buttonGroup.add(btnResolver);
+		btnResolver.addActionListener(obtenerPista);
+		btnResolver.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnResolver.setBounds(48, 101, 267, 40);
+		frame.getContentPane().add(btnResolver);
+
 		
 		JButton btnA = new JButton("A");
 		buttonGroup.add(btnA);
@@ -320,7 +295,6 @@ public class JuegoUI {
 		frame.getContentPane().add(btnX);
 		
 		JButton btnY = new JButton("Y");
-		buttonGroup.add(btnY);
 		btnY.addActionListener(charBtn);
 		btnY.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnY.setBounds(538, 428, 60, 40);
@@ -393,17 +367,14 @@ public class JuegoUI {
 		}
 	};
 	
-// -------------------------------------------------------------------------------------------
-// --------------------------------------    METODOS    --------------------------------------
-// -------------------------------------------------------------------------------------------
-	
+
 	/**
-	 * 
-	 * Selecciona la dificultad del juego pasando el parámetro 'nivel' 
-	 * 
-	 * @param nivel Aquí se especifica el nivel de dificultad deseado por el usuario para el juego.
-	 * 
-	 * */
+	* 
+	* Selecciona la dificultad del juego pasando el parámetro 'nivel' 
+	* 
+	* @param nivel Aquí se especifica el nivel de dificultad deseado por el usuario para el juego.
+	* 
+	* */
 	public static void printDificultad(int nivel) {
 		String strDificultad = "Modo de juego:";
 		switch (nivel) {
@@ -424,6 +395,19 @@ public class JuegoUI {
 	}
 	
 	/**
+	* 
+	* Imprime el número de intentos disponibles para el usuario.
+	* 
+	* @param intentos El numero de intentos que tiene el usuario
+	* 
+	* */
+	public static void intentosDisponibles(int intentos) {
+		String intentosStr = "Intentos: "+ intentos;
+		lblintentos.setText(intentosStr);
+
+	}
+	
+	/**
 	 * 
 	 * Imprime por pantalla las imagenes de las pistas, y maneja las pistas que tiene el 
 	 * usuario en la partida
@@ -431,9 +415,8 @@ public class JuegoUI {
 	 * @param
 	 * 
 	 * */
-	
-	// imprime las pistas que quedan de 0 a 5
 	public static void printPistas(int pistas) {
+		
 		//creamos array con tamaño maximo de pistas
 		String pathPistas[] = {"img\\clue_1.png","img\\clue_1.png","img\\clue_1.png","img\\clue_1.png","img\\clue_1.png"};
 		
@@ -455,27 +438,12 @@ public class JuegoUI {
 	
 	/**
 	 * 
-	 * Imprime el número de intentos disponibles para el usuario.
-	 * 
-	 * @param intentos El numero de intentos que tiene el usuario
-	 * 
-	 * */
-	public static void intentosDisponibles(int intentos) {
-		String intentosStr = "Intentos: "+ intentos;
-		lblintentos.setText(intentosStr);
-
-	}
-	
-	
-	/**
-	 * 
 	 * Metodo que sirve para imprimir por pantalla la palabra, que se mostrara oculta
 	 * y los caracteres adivinados
 	 * 
 	 * @param palabra Este parametro es la palabra que se va a imprimir
 	 * 
 	 * */
-	
 	public static void printPalabraSecreta(String palabra) {
 		palabraSecreta.setText(palabra);
 	}
@@ -488,7 +456,6 @@ public class JuegoUI {
 	 * @param vidas Parametro por el cual se pasan las vidas 
 	 * 
 	 * */
-	
 	public static void printVidaAhorcado(int vidas) {
 		String pathImagenAhorcado = "img\\ahorcado_" + vidas + ".png";
 		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon(pathImagenAhorcado).getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
@@ -498,8 +465,7 @@ public class JuegoUI {
 	 * 
 	 * Muestra la imagen de victoria, en caso de que el jugador acierte la palabra
 	 * 
-	 * */
-	
+	 * */	
 	public static void printAhorcadoGanador() {
 		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon("img\\ahorcado_win.png").getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
 		btnResolver.setEnabled(false);
@@ -511,8 +477,7 @@ public class JuegoUI {
 	 * Metodo que desctiva todos los botones para cuando el jugador gane, 
 	 * no pueda manipular el teclado
 	 * 
-	 * */
-	
+	 * */	
 	public static void disableButtons() {
 		 Enumeration<AbstractButton> buttons = buttonGroup.getElements();
 	        while (buttons.hasMoreElements()) {

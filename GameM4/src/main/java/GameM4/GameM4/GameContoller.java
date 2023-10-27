@@ -91,14 +91,14 @@ public class GameContoller {
 	 * @param inputCharacter El carácter que se ha introducido en la ronda.
 	 */
 	public static void round(char inputCharacter) {
-
-		if (characterList.contains(inputCharacter)) {
-			JOptionPane.showMessageDialog(null, "Este carácter ya fue introducido. Por favor, elija otro.");
-
-		} else {
-			characterList.add(inputCharacter);
-			--intentos;
+		
+		if(intentos==0) {
+			JOptionPane.showMessageDialog(null, "No te quedan más intetos");
+			JuegoUI.disableButtons();
+			
 		}
+			characterList.add(inputCharacter);
+
 		wordUnscrambler(secretWord, characterList);
 	}
 
@@ -164,6 +164,7 @@ public class GameContoller {
         for (char letra : letrasAdivinadas) {
             if (palabra.indexOf(letra) == -1) {
                 contador++;
+        		--intentos;
    	    	 	JuegoUI.printVidaAhorcado(contador);
             }
         }
@@ -173,6 +174,7 @@ public class GameContoller {
 	    StringBuilder resultado = new StringBuilder();
 	    
 	    System.out.println("Palabra " + palabra);
+	    
 	    for (int i = 0; i < palabra.length(); i++) {
 	        char letra = palabra.charAt(i);
 	        if (letrasAdivinadas.contains(letra)) {
@@ -234,87 +236,6 @@ public class GameContoller {
 		GameContoller.intentos = intentos;
 	}
 
-	// FUNCIONES QUE QUE POR EL MOMENTO NO SON NECESARIS PENDIENTE DE BORRADO
 
-//	 public static void ahorcado(char[] letrasAdivinadas) {
-//	 nivel = Welcome.getLevel();
-//	 char[] palabraOculta = getPalabraOculta(palabra);
-//	
-//	 for (int j = 0; j < letrasAdivinadas.length; j++) {
-//	
-//	 boolean acierto = false;
-//	
-//	 for (int i = 0; i < palabraOculta.length; i++) {
-//	 if (palabra.charAt(i)==letrasAdivinadas[j]) {
-//	 palabraOculta[i] = letrasAdivinadas[j];
-//	 acierto = true;
-//	 }
-//	 }
-//	
-//	 if (!acierto) {
-//	 fallos++;
-//	 }
-//	
-//	 }
-//	
-//	 System.out.println(palabra);
-//	 System.out.println(palabraOculta);
-//	 System.out.println(fallos);
-	// }
-
-	// private static String getNombreDificultad(int nivel) {
-	// //conseguimos una palabra dependiendo del nivel
-	// String strDificultad = "";
-	// switch (nivel) {
-	// case 1:
-	// strDificultad = "Junior";
-	// break;
-	// case 2:
-	// strDificultad = "Mid-Level";
-	// break;
-	// case 3:
-	// strDificultad = "Senior";
-	// break;
-	// default:
-	// break;
-	// }
-	// return strDificultad;
-	// }
-	//
-	private static StringBuilder getPalabraOculta(String palabra) {
-		StringBuilder palabraOculta = new StringBuilder();
-		for (int i = 0; i < palabra.length(); i++) {
-			palabraOculta.append("_");
-		}
-		return palabraOculta;
-	}
-
-	// -----------------------------------------------------------------------------------------------------------------------------------------
-	// ---------- los otros metodos que tenias, usalos como referencia pero yo
-	// algunos los borraria y los reharía ya que por ejemplo
-	// ---------- los chars de usuario son arraylist
-	// ------------------------------------------------------------------------------------------------------------------------------------------
-
-	// mira si las letras entradas por el usuario estan en la palabra
-//		public static char pista(char[] letrasUsuariao) {
-//
-//			palabra.chars();
-//			char charFaltante = 0;
-//			for (int i = 0; i < palabra.length(); i++) {
-//				// si no encuenta coincidencia por cada letra de la palabra guarda ese char para
-//				// retornar
-//				boolean coincidencia = false;
-//				for (int j = 0; j < letrasUsuariao.length; j++) {
-//					if (palabra.charAt(i) == letrasUsuariao[j]) {
-//						coincidencia = true;
-//					}
-//				}
-//				if (!coincidencia) {
-//					charFaltante = palabra.charAt(i);
-//					i = palabra.length();
-//				}
-//			}
-//			return charFaltante;
-//		}
 
 }
