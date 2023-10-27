@@ -1,47 +1,114 @@
 package GameM4.GameM4;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 
 public class LogicaJuego {
 	
-	static int fallos = 0;
-	static int pistas = 0;
+	private static final String[] palabrasSencillas = {"PROGRAMA","JAVA","CÓDIGO","ORDENADOR","PANTALLA","TECLADO","ARCHIVO","ANGULAR","JUEGO","ECLIPSE"};
+	private static final String[] palabrasIntermedias = {"ALGORITMO","COMPILACIÓN","DEPURACIÓN","ENCAPSULACIÓN","HERENCIA","POLIMORFISMO","SUBRUTINA","INTERFAZ","REDUCCIÓN","OPTIMIZACIÓN"};
+	private static final String[] palabrasDificiles = {"DESARROLLO","PARADIGMA","HEURÍSTICA","CRIPTOGRAFÍA","ARQUITECTURA","PARALELISMO","LATENCIA","MICROCONTROLADOR","REFACTORIZACIÓN","AUTOMATIZACIÓN"};
 	
-	static String[] palabras = { "BOOTCAMP", "TSYSTEMS", "ANGULAR", "GITHUB", "ORDENADOR", "JUEGO", "PROGRAMACION",
-			"JAVA", "ECLIPSE", "DISCORD" };
+    private static String palabra;
+	private static int fallos = 0; //creciente
+	private static int pistas = 5; //decreciente
+	private static int nivel = 1;
+	private static ArrayList<Character> listaCaracteres = new ArrayList<Character>();
 	
-	String[] palabraSencilla = {"PROGRAMA","JAVA","CÓDIGO","ORDENADOR","PANTALLA","TECLADO","ARCHIVO","ANGULAR","JUEGO","ECLIPSE"};
+	//public static char[] letrasUsuariao = { 's', 'u', 'r', 'o' };
+	
+	// metodo que inicializa la partida
+	public static void iniciarNuevaPartida() {
+		//setea valores para iniciar la paartida
+		fallos = 0;
+		pistas = 5;
+		
+		//recoge nivel de pantalla de welcome
+		nivel = Welcome.getLevel();
+		
+		//seteamos una palabra dependiendo del nivel
+		switch (nivel) {
+		case 1:
+			palabra = seleccionarPalabra(palabrasSencillas);
+			break;
+		case 2:
+			palabra = seleccionarPalabra(palabrasIntermedias);
+			break;
+		case 3:
+			palabra = seleccionarPalabra(palabrasDificiles);
+			break;
+		default:
+			break;
+		}
+		
+		//limpiamos lista de caracteres
+		listaCaracteres.clear();
+		
+		//creamos palabra secreta bacia solo para conocer la dimensión
+		String palabraSecreta = "";
+		for (int i = 0; i < palabra.length(); i++) {
+			palabraSecreta += " _ ";
+		}
+		
+		//printeamos elementos
+		JuegoUI.printDificultad(nivel);
+		JuegoUI.printPistas(pistas);
+		JuegoUI.printVidaAhorcado(fallos);
+		JuegoUI.printPalabraSecreta(palabraSecreta);
 
-    String[] palabrasIntermedias = {"ALGORITMO","COMPILACIÓN","DEPURACIÓN","ENCAPSULACIÓN","HERENCIA","POLIMORFISMO","SUBRUTINA","INTERFAZ","REDUCCIÓN","OPTIMIZACIÓN"};
+	}
 
-    String[] palabrasDificiles = {"DESARROLLO","PARADIGMA","HEURÍSTICA","CRIPTOGRAFÍA","ARQUITECTURA","PARALELISMO","LATENCIA","MICROCONTROLADOR","REFACTORIZACIÓN","AUTOMATIZACIÓN"};
-	
-
-	public static String palabra = seleccionarPalabra();
-	
-	public static char[] letrasUsuariao = { 's', 'u', 'r', 'o' };
-	
-	public static int level = Welcome.getLevel();
-
-	public static String seleccionarPalabra() {
+	public static String seleccionarPalabra(String[] palabras) {
 		Random pRandom = new Random();
 		int randomInt = pRandom.nextInt(palabras.length);
 		return palabras[randomInt];
 	}
 	
+//->	//metodo de ronda cada vez que se introduce un caracter por la ui
+	public static void ronda(char caracterIntroducido) {
+		//comprobamos si el caracter introducido ya lo tenemos en la lista para prevenir que se entre 2 veces
+		//si es así se almacena caracter en la lista
+		listaCaracteres.add(caracterIntroducido);
+		
+		//comprobamos la lista de caracteres y obtenemos la palabra secreta para mostrarlo en la ui
+		
+		//actualizamos datos
+		
+		
+	}
 	
-
-	public static char pista() {
+//->	//metodo que se activa cuando el usuario pulsa para obtener una pista
+	public static void obtenerPista() {
+		if (pistas >= 0) {
+			//obtenemos pista
+			
+			//comprobamos si jugador ha ganado
+			
+			//decrementamos n pistas
+			pistas--;
+			
+			//actualizamos UI printeando elementos
+			JuegoUI.printPistas(pistas);
+			//JuegoUI.printPalabraSecreta(palabraSecreta);
+		}
+	}
+	
+	
+//-----------------------------------------------------------------------------------------------------------------------------------------
+//---------- los otros metodos que tenias, usalos como referencia pero yo algunos los borraria y los reharía ya que por ejemplo 
+//---------- los chars de usuario son arraylist
+//------------------------------------------------------------------------------------------------------------------------------------------
+	
+	//mira si las letras entradas por el usuario estan en la palabra
+	public static char pista(char[] letrasUsuariao) {
 
 		palabra.chars();
-
 		char charFaltante = 0;
 		for (int i = 0; i < palabra.length(); i++) {
-			
 			// si no encuenta coincidencia por cada letra de la palabra guarda ese char para
 			// retornar
-
 			boolean coincidencia = false;
 			for (int j = 0; j < letrasUsuariao.length; j++) {
 				if (palabra.charAt(i) == letrasUsuariao[j]) {
@@ -52,13 +119,12 @@ public class LogicaJuego {
 				charFaltante = palabra.charAt(i);
 				i = palabra.length();
 			}
-
 		}
 		return charFaltante;
 	}
 	
 	public static void ahorcado(char[] letrasAdivinadas) {
-		String palabra = seleccionarPalabra();
+		nivel = Welcome.getLevel();
 		char[] palabraOculta = getPalabraOculta(palabra);
 		
 		for (int j = 0; j < letrasAdivinadas.length; j++) {
@@ -104,7 +170,26 @@ public class LogicaJuego {
 //		System.out.println(fallos);
 //		System.out.println(resultado.toString());
 //	}
-
+	
+	private static String getNombreDificultad(int nivel) {
+		//conseguimos una palabra dependiendo del nivel
+		String strDificultad = "";
+		switch (nivel) {
+			case 1:
+				strDificultad = "Junior";
+				break;
+			case 2:
+				strDificultad = "Mid-Level";
+				break;
+			case 3:
+				strDificultad = "Senior";
+				break;
+			default:
+				break;
+			}
+		return strDificultad;
+	}
+	
 	private static char[] getPalabraOculta(String palabra) {
 		char[] palabraOculta = new char[palabra.length()];
 		for (int i = 0; i < palabraOculta.length; i++) {
