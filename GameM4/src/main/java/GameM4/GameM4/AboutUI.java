@@ -53,11 +53,12 @@ public class AboutUI {
 	    Timer timer = new Timer(100, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            if (yPos > 0) {
-	                yPos -= 5; // Ajusta la velocidad del desplazamiento aquí
-	                lblNewLabel_1.setLocation(75, yPos + 100);
-	                lblNewLabel.setLocation(75, yPos);
-	                lblAdrian.setLocation(75, yPos + 34); // Ajusta el espacio vertical entre etiquetas
-	                lblDavidMaza.setLocation(75, yPos + 68); // Ajusta el espacio vertical entre etiquetas
+	                yPos -= 5;
+	                lblNewLabel_1.setLocation(75, yPos );
+	                lblAdrian.setLocation(75, yPos + 114); 
+	                lblDavidMaza.setLocation(75, yPos + 84);
+	                lblNewLabel.setLocation(75, yPos + 54);
+	  
 	            } else {
 	                ((Timer) e.getSource()).stop();
 	            }
