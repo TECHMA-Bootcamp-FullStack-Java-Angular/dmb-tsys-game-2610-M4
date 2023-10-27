@@ -134,10 +134,10 @@ public class Welcome {
 	ActionListener showPlay = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {		
 			level = rdbtnSenior.isSelected()?3:rdbtnMid.isSelected()?2:1; ;
-			
 			frame.setVisible(false);
-			JuegoUI window = new JuegoUI();
-			window.frame.setVisible(true);
+			
+			JuegoUI windowUi = new JuegoUI();
+			JuegoUI.frame.setVisible(true);
 		}
 	};
 

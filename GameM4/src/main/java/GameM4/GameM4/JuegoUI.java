@@ -5,6 +5,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -12,23 +15,12 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class JuegoUI {
-
-	
-	private int vidas = 10;
-	private int pistas = 5;
-	private String palabraAadivinar = "Hola"; //se recoje de logica
-	private char[] caracteresUsuario = {'H', 'J', 'P', 'N'}; // se pasa a Logica
-	
-	
-	private JFrame frame;
-	JLabel ahorcadoPintado;
-	JLabel pista1;
-	JLabel pista2;
-	JLabel pista3;
-	JLabel pista4;
-	JLabel pista5;
-
+public class JuegoUI {	
+	static JFrame frame;
+	private static JLabel dificultad;
+	private static JLabel ahorcadoPintado;
+	private static JLabel pista1, pista2, pista3, pista4, pista5;
+	private static JLabel palabraSecreta;
 
 	/**
 	 * Launch the application.
@@ -51,9 +43,10 @@ public class JuegoUI {
 	 * Create the application.
 	 */
 	public JuegoUI() {
-		
-		
+		//creamos ventana y componentes
 		initialize();
+		//los llenamos
+		LogicaJuego.iniciarNuevaPartida();
 	}
 
 	/**
@@ -67,23 +60,32 @@ public class JuegoUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Ahorcado");
-		
+
+// dificultad
+		dificultad = new JLabel("Modo de juego:");
+		dificultad.setFont(new Font("Tahoma", Font.BOLD, 14));
+		dificultad.setBounds(393, 27, 275, 17);
+		frame.getContentPane().add(dificultad);
+
+// menu
 		JLabel lblNewLabel = new JLabel("Menu");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setBounds(48, 28, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Reiniciar juego");
+		btnNewButton.addActionListener(terminarPartida);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton.setBounds(48, 51, 267, 40);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnResolver = new JButton("Usar Pista");
+		btnResolver.addActionListener(obtenerPista);
 		btnResolver.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnResolver.setBounds(48, 101, 267, 40);
 		frame.getContentPane().add(btnResolver);
-		
-		
+
+// pistas
 		JLabel lblVidas = new JLabel("Pistas");
 		lblVidas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblVidas.setBounds(50, 164, 134, 20);
@@ -114,29 +116,28 @@ public class JuegoUI {
 		pista5.setBounds(188, 183, 30, 30);
 		frame.getContentPane().add(pista5);
 		
-		System.out.println(pista5.getIconTextGap());
-
-		
+// palabra secreta
 		JLabel lblPalabraSecreta = new JLabel("Palabra secreta");
 		lblPalabraSecreta.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPalabraSecreta.setBounds(48, 234, 134, 20);
+		lblPalabraSecreta.setBounds(48, 223, 134, 20);
 		frame.getContentPane().add(lblPalabraSecreta);
 		
+		palabraSecreta = new JLabel("PALABRA_SECRETA_");
+		palabraSecreta.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		palabraSecreta.setBounds(48, 243, 310, 30);
+		frame.getContentPane().add(palabraSecreta);
+
+//ahorcado
+		ahorcadoPintado = new JLabel();
+		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon("img\\ahorcado_0.png").getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
+		ahorcadoPintado.setBounds(368, 51, 260, 260);
+		frame.getContentPane().add(ahorcadoPintado);
+		
+//teclado
 		JLabel lblTeclado = new JLabel("Teclado");
 		lblTeclado.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblTeclado.setBounds(48, 298, 105, 20);
 		frame.getContentPane().add(lblTeclado);
-		
-		JLabel lblNewLabel_1 = new JLabel("PALABRA_SECRETA_");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(48, 254, 267, 20);
-		frame.getContentPane().add(lblNewLabel_1);
-		
-		ahorcadoPintado = new JLabel();
-		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon("img\\ahorcado_1.png").getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
-		ahorcadoPintado.setBounds(368, 40, 260, 260);
-		frame.getContentPane().add(ahorcadoPintado);
-		
 		
 		JButton btnA = new JButton("A");
 		btnA.addActionListener(charBtn);
@@ -302,50 +303,102 @@ public class JuegoUI {
 		frame.getContentPane().add(btnZ);
 	
 		
-		//it moves the window to the middle
+		//mueve la ventana al medio
 		frame.setLocationRelativeTo(null);
 	}
 	
+// -------------------------------------------------------------------------------------------
+// --------------------------------------    EVENTOS    --------------------------------------
+// -------------------------------------------------------------------------------------------
+	//evento de botones a modo de teclado para recoger caracter pulsado y hacer una ronda
 	ActionListener charBtn = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			//guardamos datos del boton
 			JButton boton = (JButton) e.getSource();
 			char btnChar = boton.getText().charAt(0);
-			System.out.println(btnChar);
+			//System.out.println(btnChar);
 			
-			if (btnChar == 'A') {
-				pintarVidaAhorcado(1);
-			}else if (btnChar == 'B') {
-				pintarVidaAhorcado(2);
-			}else if (btnChar == 'C') {
-				pintarVidaAhorcado(3);
-			}else if (btnChar == 'D') {
-				pintarVidaAhorcado(4);
-			}else if (btnChar == 'E') {
-				pintarVidaAhorcado(5);
-			}else if (btnChar == 'F') {
-				pintarVidaAhorcado(6);
-			}else if (btnChar == 'G') {
-				pintarVidaAhorcado(7);
-			}else if (btnChar == 'H') {
-				pintarVidaAhorcado(8);
-			}else if (btnChar == 'I') {
-				pintarVidaAhorcado(9);
-			}else if (btnChar == 'J') {
-				pintarVidaAhorcado(10);
-			}else if (btnChar == 'K') {
-				pintarAhorcadoGanador();
-			}
+			//pasamos caracter introducido y hacemos una ronda de comprobación
+			LogicaJuego.ronda(btnChar);
 			
 		}
 	};
 	
-	public void pintarVidaAhorcado(int vidas) {
+	//evento para obtener una pista en caso de que queden pistas
+	ActionListener obtenerPista = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			LogicaJuego.obtenerPista();
+		}
+	};
+	
+	//Accion de ir al menú principal
+	ActionListener terminarPartida = new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			frame.setVisible(false);
+			Welcome windowWelcome = new Welcome();
+			windowWelcome.frame.setVisible(true);
+		}
+	};
+	
+// -------------------------------------------------------------------------------------------
+// --------------------------------------    METODOS    --------------------------------------
+// -------------------------------------------------------------------------------------------
+	
+	//imprime la dificultad(1 a 3)
+	public static void printDificultad(int nivel) {
+		//conseguimos una palabra dependiendo del nivel
+		String strDificultad = "Modo de juego:";
+		switch (nivel) {
+			case 1:
+				strDificultad = "Modo de juego: Junior";
+				break;
+			case 2:
+				strDificultad = "Modo de juego: Mid-Level";
+				break;
+			case 3:
+				strDificultad = "Modo de juego: Senior";
+				break;
+			default:
+				break;
+			}
+		dificultad.setText(strDificultad);
+
+	}
+	
+	// imprime las pistas que quedan de 0 a 5
+	public static void printPistas(int pistas) {
+		//creamos array con tamaño maximo de pistas
+		String pathPistas[] = {"img\\clue_1.png","img\\clue_1.png","img\\clue_1.png","img\\clue_1.png","img\\clue_1.png"};
+		
+		//las ultimas posicionees cambian par quedar desmarcadas
+		for (int i = 0; i < 5; i++) {
+			if (i >= pistas) {
+				pathPistas[i] = "img\\clue_0.png";
+			}
+		}
+		
+		//seteamos las imagenes de las pistas
+		pista1.setIcon(new ImageIcon(new ImageIcon(pathPistas[0]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		pista2.setIcon(new ImageIcon(new ImageIcon(pathPistas[1]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		pista3.setIcon(new ImageIcon(new ImageIcon(pathPistas[2]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		pista4.setIcon(new ImageIcon(new ImageIcon(pathPistas[3]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		pista5.setIcon(new ImageIcon(new ImageIcon(pathPistas[4]).getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		
+	}
+	
+	//imprime la palabra secreta
+	public static void printPalabraSecreta(String palabra) {
+		palabraSecreta.setText(palabra);
+	}
+	
+	//imprime la vida del ahorcado (0 to 10)
+	public static void printVidaAhorcado(int vidas) {
 		String pathImagenAhorcado = "img\\ahorcado_" + vidas + ".png";
 		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon(pathImagenAhorcado).getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
 	}
 	
-	public void pintarAhorcadoGanador() {
+	//imprime imagen del ahorcado ganador
+	public static void printAhorcadoGanador() {
 		ahorcadoPintado.setIcon(new ImageIcon(new ImageIcon("img\\ahorcado_win.png").getImage().getScaledInstance(260, 260, Image.SCALE_DEFAULT)));
 	}
 
