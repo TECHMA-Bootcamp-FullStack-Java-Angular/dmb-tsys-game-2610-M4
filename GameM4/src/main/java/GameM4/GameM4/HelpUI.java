@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import java.awt.SystemColor;
 import java.awt.Font;
 
-public class Help extends JFrame {
+public class HelpUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -25,7 +25,7 @@ public class Help extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Help frame = new Help();
+					HelpUI frame = new HelpUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class Help extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Help() {
+	public HelpUI() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -75,7 +75,7 @@ public class Help extends JFrame {
 		
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			Welcome window = new Welcome();
+			WelcomeUI window = new WelcomeUI();
 			window.frame.setVisible(true);
 			
 		}

@@ -1,42 +1,38 @@
 package GameM4.GameM4;
-import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class JuegoUI {	
-	static JFrame frame;
+	
+	public JFrame frame;
 	private static JLabel dificultad;
 	private static JLabel ahorcadoPintado;
 	private static JLabel pista1, pista2, pista3, pista4, pista5;
-	private static JLabel palabraSecreta;
+	public static JLabel palabraSecreta;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JuegoUI window = new JuegoUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					JuegoUI window = new JuegoUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 	
 
 	/**
@@ -46,7 +42,7 @@ public class JuegoUI {
 		//creamos ventana y componentes
 		initialize();
 		//los llenamos
-		LogicaJuego.iniciarNuevaPartida();
+		GameContoller.startGame();
 	}
 
 	/**
@@ -316,10 +312,9 @@ public class JuegoUI {
 			//guardamos datos del boton
 			JButton boton = (JButton) e.getSource();
 			char btnChar = boton.getText().charAt(0);
-			//System.out.println(btnChar);
+			System.out.println(btnChar);
 			
-			//pasamos caracter introducido y hacemos una ronda de comprobación
-			LogicaJuego.ronda(btnChar);
+			GameContoller.round(btnChar);
 			
 		}
 	};
@@ -327,7 +322,7 @@ public class JuegoUI {
 	//evento para obtener una pista en caso de que queden pistas
 	ActionListener obtenerPista = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			LogicaJuego.obtenerPista();
+			GameContoller.getHint();
 		}
 	};
 	
@@ -335,7 +330,7 @@ public class JuegoUI {
 	ActionListener terminarPartida = new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 			frame.setVisible(false);
-			Welcome windowWelcome = new Welcome();
+			WelcomeUI windowWelcome = new WelcomeUI();
 			windowWelcome.frame.setVisible(true);
 		}
 	};
