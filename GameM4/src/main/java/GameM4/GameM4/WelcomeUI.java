@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JRadioButton;
 
-public class Welcome {
+public class WelcomeUI {
 
 	JFrame frame;
 	private JButton btnAbout;
@@ -32,7 +32,7 @@ public class Welcome {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Welcome window = new Welcome();
+					WelcomeUI window = new WelcomeUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class Welcome {
 	/**
 	 * Create the application.
 	 */
-	public Welcome() {
+	public WelcomeUI() {
 		initialize();
 	}
 
@@ -115,7 +115,7 @@ public class Welcome {
 		public void actionPerformed(ActionEvent e) {
 			
 			frame.setVisible(false);
-			Help frame = new Help();
+			HelpUI frame = new HelpUI();
 			frame.setVisible(true);
 			
 		}
@@ -125,7 +125,7 @@ public class Welcome {
 		public void actionPerformed(ActionEvent e) {
 
 			frame.setVisible(false);
-			About window = new About();
+			AboutUI window = new AboutUI();
 			window.frame.setVisible(true);
 			
 		}
@@ -137,12 +137,14 @@ public class Welcome {
 			frame.setVisible(false);
 			
 			JuegoUI windowUi = new JuegoUI();
-			JuegoUI.frame.setVisible(true);
+			windowUi.frame.setVisible(true);
 		}
 	};
 
 	public static int getLevel() {
 		return level;
 	}
+
+
 	
 }	

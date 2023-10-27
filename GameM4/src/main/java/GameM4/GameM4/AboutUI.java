@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-public class About {
+public class AboutUI {
 
 	JFrame frame;
 
@@ -21,7 +21,7 @@ public class About {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					About window = new About();
+					AboutUI window = new AboutUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +33,7 @@ public class About {
 	/**
 	 * Create the application.
 	 */
-	public About() {
+	public AboutUI() {
 		initialize();
 	}
 
@@ -75,7 +75,7 @@ public class About {
 		public void actionPerformed(ActionEvent e) {
 			
 			frame.setVisible(false);
-			Welcome window = new Welcome();	
+			WelcomeUI window = new WelcomeUI();	
 	
 			window.frame.setVisible(true);
 			
