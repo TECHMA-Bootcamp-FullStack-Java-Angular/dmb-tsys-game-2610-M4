@@ -12,6 +12,9 @@ Este repositorio contiene las tareas del Bootcamp 👨‍💻
 ## JUEGO DEL AHORCADO
 ***
 
+<div align="center"><img width="60%"  src="https://github.com/TECHMA-Bootcamp-FullStack-Java-Angular/dmb-tsys-game-2610-M4/blob/main/GameM4/img/t20img.png?raw=true"  alt="Logo BootCamp" /></div>
+<br>
+
 ### El objetivo es implementar u na aplicación que permita jugar al juego del ahorcado.
 Para su realización se deberán seguir las siguientes indicaciones.
 
@@ -70,3 +73,12 @@ siempre que tenga mas de una vida.
 
 La pista a mostrar será la primera letra de cada palabra oculta que aun no haya
 sido encontrada. Es posible que tras mostrar una pista el jugador gane la partida.
+
+## Authors 
+
+- [Sergi Rodríguez](https://github.com/SerotDev) 
+- [Adrian Gallego](https://github.com/adriii28)
+- [David Maza](https://github.com/d-maza)
+
+
+
